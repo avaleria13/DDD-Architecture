@@ -1,0 +1,15 @@
+test_cancel (test_domain.DomainTests.test_cancel) ... ok
+test_concurrent_claim (test_domain.DomainTests.test_concurrent_claim) ... ok
+test_immutable_id (test_domain.DomainTests.test_immutable_id) ... ok
+test_lifecycle (test_domain.DomainTests.test_lifecycle) ... ok
+test_outsider (test_domain.DomainTests.test_outsider) ... ok
+test_priority_reason (test_domain.DomainTests.test_priority_reason) ... ok
+test_priority_required (test_domain.DomainTests.test_priority_required) ... ok
+test_reassignment (test_domain.DomainTests.test_reassignment) ... ok
+test_reporter_cannot_prioritize (test_domain.DomainTests.test_reporter_cannot_prioritize) ... ok
+test_stale_write (test_domain.DomainTests.test_stale_write) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.003s
+
+OK

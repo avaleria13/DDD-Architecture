@@ -53,7 +53,7 @@ class FixItGUI:
 
         self.repository = MemoryTicketRepository()
         self.active_ticket_id = None
-        self.ticket_metadata = {}  # Presentation-only storage for title/desc/category
+        self.ticket_metadata = {} 
         self.is_demo_running = False
 
         self.create_actors()
@@ -61,9 +61,6 @@ class FixItGUI:
         self.build_interface()
         self.refresh_all()
 
-    # ------------------------------------------------------------------
-    # Setup & Styling
-    # ------------------------------------------------------------------
     def create_actors(self):
         self.actors = {
             "Reporter": Actor("reporter-01", Role.REPORTER),
@@ -151,9 +148,7 @@ class FixItGUI:
             font=("Segoe UI", 9, "bold"),
         )
 
-    # ------------------------------------------------------------------
-    # Interface Layout
-    # ------------------------------------------------------------------
+    
     def build_interface(self):
         self.root.columnconfigure(0, weight=1)
         self.root.rowconfigure(1, weight=1)
@@ -347,7 +342,6 @@ class FixItGUI:
             row=0, column=0, columnspan=6, sticky="w", pady=(0, 8)
         )
 
-        # Row 1: Core lifecycle buttons
         self.btn_claim = ttk.Button(card, text="Claim Ticket", style="Action.TButton", command=self.claim_ticket)
         self.btn_start = ttk.Button(card, text="Start Work", style="Action.TButton", command=self.start_work)
         self.btn_resolve = ttk.Button(card, text="Resolve Ticket", style="Action.TButton", command=self.resolve_ticket)
@@ -360,7 +354,6 @@ class FixItGUI:
         ):
             btn.grid(row=1, column=i, sticky="ew", padx=3, pady=(0, 8))
 
-        # Row 2: Priority controls + Reassign controls + Reset
         self.priority_var = tk.StringVar(value=Priority.P2_HIGH.name)
         self.priority_combo = ttk.Combobox(
             card, textvariable=self.priority_var, values=[p.name for p in Priority], state="readonly", width=14

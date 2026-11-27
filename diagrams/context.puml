@@ -1,0 +1,25 @@
+@startuml
+top to bottom direction
+skinparam backgroundColor white
+skinparam defaultFontName Helvetica
+skinparam defaultFontSize 11
+skinparam ArrowFontSize 9
+skinparam shadowing false
+
+skinparam rectangle {
+  RoundCorner 20
+  BackgroundColor white
+  BorderColor black
+}
+
+rectangle "Identity & Access\nGeneric | Auth\nAccount, Session, Role" as A
+rectangle "IT Support Ticketing\nCore | Tickets\nSupportTicket, Timeline" as T
+rectangle "Ticket Conversation\nSupporting | Chat\nMessage, Conversation" as C
+
+A --> T : Identity REST (U -> D)
+A --> C : Identity REST (U -> D)
+
+T -right-> C : Permission REST (U -> D)
+T -[dashed]right-> C : Ticket events / JetStream
+
+@enduml

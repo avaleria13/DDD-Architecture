@@ -1,0 +1,62 @@
+@startuml
+top to bottom direction
+skinparam backgroundColor white
+skinparam defaultFontName Helvetica
+skinparam defaultFontSize 10
+skinparam ArrowFontSize 9
+skinparam shadowing false
+hide circle
+hide empty members
+
+skinparam class {
+  BackgroundColor white
+  BorderColor black
+  ArrowColor black
+}
+
+class "SupportTicket <<aggregate root>>" as T {
+  id: TicketId
+  reporterId, assigneeId
+  status, urgency, priority
+  version
+  --
+  claim()
+  set_priority()
+  advance()
+  reassign()
+}
+
+class "TicketId <<value object>>" as I {
+  value: UUID
+}
+
+class "Event <<immutable value>>" as E {
+  version, kind, actorId
+  before, after, reason, at
+}
+
+class "Actor <<identity reference>>" as A {
+  id, role
+}
+
+class "TicketRepository <<interface>>" as R {
+  add(), get(), save()
+}
+
+class "ConversationPolicy <<domain service>>" as P {
+  can_write()
+}
+
+class "MemoryTicketRepository" as M {
+  optimistic version check
+}
+
+T *-- "1 : 1..*" E
+T *-- I
+T ..> A : references
+R ..> T
+M ..|> R
+P ..> T
+P ..> A
+
+@enduml
